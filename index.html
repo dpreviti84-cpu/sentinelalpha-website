@@ -186,7 +186,7 @@
     .field input, .field select, .field textarea {
       width: 100%; background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px;
       padding: 11px 14px; font-size: 15px; color: var(--text); font-family: 'Inter', sans-serif;
-      transition: border-color 0.2s; outline: none; appearance: none;
+      transition: border-color 0.2s; outline: none; appearance: none; pointer-events: auto;
     }
     .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
     .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A94A6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
@@ -479,7 +479,7 @@
         </div>
         <div class="field" style="margin-top:4px;">
           <div style="display:flex;align-items:flex-start;gap:10px;">
-            <input type="checkbox" id="f-consent" style="width:18px;height:18px;flex-shrink:0;margin-top:3px;accent-color:var(--accent);cursor:pointer;" />
+            <input type="checkbox" id="f-consent" style="width:18px;height:18px;flex-shrink:0;margin-top:3px;accent-color:var(--accent);cursor:pointer;pointer-events:auto !important;" />
             <label for="f-consent" style="font-size:13px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:400;letter-spacing:0;cursor:pointer;line-height:1.6;">
               By submitting this form I agree to the <a href="#" onclick="openDoc('privacy');return false;" style="color:var(--accent);">Privacy Policy</a> and <a href="#" onclick="openDoc('terms');return false;" style="color:var(--accent);">Terms of Service</a>, and I consent to receive SMS messages from Sentinel Alpha LLC regarding my inquiry. Reply STOP to opt out at any time. Msg and data rates may apply.
             </label>
