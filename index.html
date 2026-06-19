@@ -21,7 +21,6 @@
       --border:    #1E2D45;
       --radius:    10px;
     }
-    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -29,6 +28,7 @@
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.15; letter-spacing: -0.02em; }
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -48,7 +48,7 @@
     .nav-logo span { color: var(--accent); }
     .nav-right { display: flex; align-items: center; gap: 20px; }
     .nav-veteran { font-size: 12px; font-weight: 600; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-    .nav-cta { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 8px 18px; border-radius: var(--radius); transition: background 0.2s, color 0.2s; }
+    .nav-cta { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 8px 18px; border-radius: var(--radius); transition: background 0.2s, color 0.2s; cursor: pointer; background: none; }
     .nav-cta:hover { background: var(--accent); color: var(--bg); }
 
     /* HERO */
@@ -59,9 +59,9 @@
     .hero-headline em { font-style: normal; color: var(--accent); }
     .hero-sub { font-size: 18px; color: var(--muted); line-height: 1.7; margin-bottom: 36px; max-width: 440px; }
     .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; background: var(--accent); color: var(--bg); padding: 14px 28px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.2s; display: inline-block; }
+    .btn-primary { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; background: var(--accent); color: var(--bg); padding: 14px 28px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.2s; display: inline-block; cursor: pointer; border: none; }
     .btn-primary:hover { opacity: 0.88; }
-    .btn-ghost { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; color: var(--muted); padding: 14px 28px; border-radius: var(--radius); text-decoration: none; border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s; display: inline-block; }
+    .btn-ghost { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; color: var(--muted); padding: 14px 28px; border-radius: var(--radius); text-decoration: none; border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s; display: inline-block; cursor: pointer; background: none; }
     .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
 
     /* SMS DEMO */
@@ -118,8 +118,10 @@
 
     /* INDUSTRIES */
     .industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
-    .industry-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 20px; text-align: center; transition: border-color 0.2s, background 0.2s; }
-    .industry-tile:hover { border-color: var(--accent-dim); background: var(--bg-raised); }
+    .industry-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 20px; text-align: center; transition: border-color 0.2s, background 0.2s, transform 0.15s; cursor: pointer; }
+    .industry-tile:hover { border-color: var(--accent); background: var(--bg-raised); transform: translateY(-2px); }
+    .industry-tile .click-hint { font-size: 11px; color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: 0.06em; margin-top: 10px; opacity: 0; transition: opacity 0.2s; }
+    .industry-tile:hover .click-hint { opacity: 1; }
     .industry-icon { font-size: 28px; margin-bottom: 14px; display: block; }
     .industry-tile h4 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
     .industry-tile p { font-size: 13px; color: var(--muted); line-height: 1.5; }
@@ -137,13 +139,66 @@
     .founder-bio { font-size: 16px; color: var(--muted); line-height: 1.8; }
     .founder-bio strong { color: var(--text); font-weight: 500; }
 
-    /* CTA */
+    /* CTA SECTION - simplified, no redundant button */
     #cta { padding: 96px 0; text-align: center; }
     .cta-inner { max-width: 600px; margin: 0 auto; }
     .cta-inner h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; color: var(--text); margin-bottom: 16px; }
     .cta-inner p { font-size: 17px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; }
-    .cta-contact { margin-top: 28px; font-size: 14px; color: var(--muted); }
-    .cta-contact a { color: var(--accent); text-decoration: none; }
+    .cta-contact-options { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-contact-options a { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; padding: 14px 28px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.2s; display: inline-block; }
+    .btn-call { background: var(--bg-card); color: var(--text); border: 1px solid var(--border); }
+    .btn-call:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-sms { background: var(--bg-card); color: var(--text); border: 1px solid var(--border); }
+    .btn-sms:hover { border-color: var(--accent); color: var(--accent); }
+    .cta-note { margin-top: 20px; font-size: 13px; color: var(--muted); }
+
+    /* MODAL OVERLAY */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(5, 8, 18, 0.85);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+      transform: translateY(12px);
+      transition: transform 0.25s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 18px; line-height: 1; transition: color 0.2s; }
+    .modal-close:hover { color: var(--text); }
+    .modal-industry-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 1px solid var(--accent-dim); border-radius: 20px; padding: 5px 12px; margin-bottom: 16px; font-size: 13px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--accent); }
+    .modal h2 { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .modal-sub { font-size: 15px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+    .field { margin-bottom: 18px; }
+    .field label { display: block; font-size: 13px; font-weight: 600; font-family: 'Space Grotesk', sans-serif; color: var(--muted); margin-bottom: 7px; letter-spacing: 0.04em; }
+    .field input, .field select, .field textarea {
+      width: 100%; background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px;
+      padding: 11px 14px; font-size: 15px; color: var(--text); font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s; outline: none; appearance: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
+    .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A94A6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .field textarea { resize: vertical; min-height: 90px; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: 0.6; }
+    .modal-submit { width: 100%; background: var(--accent); color: var(--bg); font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; padding: 14px; border-radius: var(--radius); border: none; cursor: pointer; margin-top: 8px; transition: opacity 0.2s; }
+    .modal-submit:hover { opacity: 0.88; }
+    .modal-success { text-align: center; padding: 20px 0; display: none; }
+    .modal-success .success-icon { font-size: 48px; margin-bottom: 16px; }
+    .modal-success h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .modal-success p { font-size: 15px; color: var(--muted); line-height: 1.6; }
 
     /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
@@ -163,11 +218,13 @@
       .founder-inner { grid-template-columns: 1fr; }
       .founder-photo { width: 200px; height: 210px; }
       .nav-veteran { display: none; }
+      .modal { padding: 28px 20px; }
     }
     @media (max-width: 560px) {
       .industries-grid { grid-template-columns: 1fr 1fr; }
       .hero-actions { flex-direction: column; }
       .btn-primary, .btn-ghost { text-align: center; }
+      .cta-contact-options { flex-direction: column; align-items: center; }
     }
     @media (prefers-reduced-motion: reduce) {
       .msg, .typing-indicator { transition: none; }
@@ -182,7 +239,7 @@
     <a href="#" class="nav-logo">SENTINEL<span>ALPHA</span></a>
     <div class="nav-right">
       <span class="nav-veteran">Veteran Owned and Operated</span>
-      <a href="#cta" class="nav-cta">Request a Demo</a>
+      <button class="nav-cta" onclick="openModal()">Request a Demo</button>
     </div>
   </nav>
 
@@ -195,12 +252,10 @@
           <h1 class="hero-headline">Every business is unique.<br><em>Your AI agent should be too.</em></h1>
           <p class="hero-sub">We build custom AI agents that qualify leads, handle inbound inquiries, and book appointments around the clock - configured specifically to how your business actually operates.</p>
           <div class="hero-actions">
-            <a href="#cta" class="btn-primary">Request a Free Demo</a>
-            <a href="#how" class="btn-ghost">See How It Works</a>
+            <button class="btn-primary" onclick="openModal()">Request a Free Demo</button>
+            <button class="btn-ghost" onclick="scrollToSection('how')">See How It Works</button>
           </div>
         </div>
-
-        <!-- LIVE SMS DEMO -->
         <div class="demo-window" aria-label="Live demo of Sarah AI agent">
           <div class="demo-header">
             <div class="demo-avatar">
@@ -304,26 +359,31 @@
     <div class="container">
       <p class="section-eyebrow">Industries</p>
       <h2 class="section-headline">Built for businesses that run on leads.</h2>
+      <p style="color:var(--muted);font-size:15px;margin-top:12px;">Click your industry to get started.</p>
       <div class="industries-grid">
-        <div class="industry-tile">
+        <div class="industry-tile" onclick="openModal('Home Services and Trades')">
           <span class="industry-icon">🔨</span>
           <h4>Home Services and Trades</h4>
           <p>Fencing, roofing, HVAC, plumbing, solar - any trade where speed-to-response wins the job.</p>
+          <div class="click-hint">Get Started &rarr;</div>
         </div>
-        <div class="industry-tile">
+        <div class="industry-tile" onclick="openModal('Legal and Professional')">
           <span class="industry-icon">⚖️</span>
           <h4>Legal and Professional</h4>
           <p>Law firms, CPAs, and financial advisors who need to qualify clients before spending billable hours.</p>
+          <div class="click-hint">Get Started &rarr;</div>
         </div>
-        <div class="industry-tile">
+        <div class="industry-tile" onclick="openModal('Real Estate')">
           <span class="industry-icon">🏠</span>
           <h4>Real Estate</h4>
           <p>Agents, brokers, and investors who need leads triaged and appointments booked without manual follow-up.</p>
+          <div class="click-hint">Get Started &rarr;</div>
         </div>
-        <div class="industry-tile">
+        <div class="industry-tile" onclick="openModal('Mortgage and Lending')">
           <span class="industry-icon">🏦</span>
           <h4>Mortgage and Lending</h4>
           <p>Loan officers and brokers who need to capture and qualify borrower leads before a competitor calls them back first.</p>
+          <div class="click-hint">Get Started &rarr;</div>
         </div>
       </div>
     </div>
@@ -358,8 +418,13 @@
         <p class="section-eyebrow">Get Started</p>
         <h2>See what Sarah can do for your business.</h2>
         <p>We start with a conversation, not a contract. Tell us about your operation and we'll show you a demo built around it.</p>
-        <a href="mailto:dpreviti@sentinelalpha.co?subject=Demo Request" class="btn-primary">Request Your Free Demo</a>
-        <p class="cta-contact">Prefer a direct line? Call or text <a href="tel:8082207333">(808) 220-7333</a></p>
+        <button class="btn-primary" onclick="openModal()" style="margin-bottom:28px;">Request Your Free Demo</button>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Or reach out directly:</p>
+        <div class="cta-contact-options">
+          <a href="tel:8082207333" class="cta-contact-options a btn-call">📞 Call (808) 220-7333</a>
+          <a href="sms:8082207333" class="btn-sms">💬 Text (808) 220-7333</a>
+        </div>
+        <p class="cta-note">We typically respond within the hour during business hours.</p>
       </div>
     </div>
   </section>
@@ -370,7 +435,143 @@
     <div class="footer-legal">&copy; 2026 Sentinel Alpha LLC. All rights reserved.</div>
   </footer>
 
+  <!-- DEMO REQUEST MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+
+      <div id="modal-form-content">
+        <div class="modal-industry-badge" id="modal-badge" style="display:none;">
+          <span id="modal-badge-text"></span>
+        </div>
+        <h2 id="modal-title">Request Your Free Demo</h2>
+        <p class="modal-sub">Tell us about your business and we'll build a demo configured specifically to your operation - no generic templates.</p>
+
+        <div class="field">
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" placeholder="First and last name" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="f-biz">Business Name</label>
+          <input type="text" id="f-biz" placeholder="Your company name" />
+        </div>
+        <div class="field">
+          <label for="f-industry">Industry</label>
+          <select id="f-industry">
+            <option value="">Select your industry</option>
+            <option value="Home Services and Trades">Home Services and Trades</option>
+            <option value="Legal and Professional">Legal and Professional</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Mortgage and Lending">Mortgage and Lending</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-phone">Best Phone Number</label>
+          <input type="tel" id="f-phone" placeholder="(xxx) xxx-xxxx" autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="f-email">Email Address</label>
+          <input type="email" id="f-email" placeholder="you@yourbusiness.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-notes">Anything else we should know? (optional)</label>
+          <textarea id="f-notes" placeholder="How leads come in, biggest pain points, current volume..."></textarea>
+        </div>
+        <button class="modal-submit" onclick="submitForm()">Send My Demo Request</button>
+      </div>
+
+      <div class="modal-success" id="modal-success">
+        <div class="success-icon">✅</div>
+        <h3>Request received.</h3>
+        <p>We'll reach out within one business day to schedule your demo. Expect a call or text from (808) 220-7333.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // ── SMOOTH SCROLL without html scroll-behavior (fixes mobile jump) ──
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const navH = document.querySelector('nav').offsetHeight;
+      const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    // ── MODAL ──
+    function openModal(industry) {
+      const overlay = document.getElementById('modal-overlay');
+      const badge = document.getElementById('modal-badge');
+      const badgeText = document.getElementById('modal-badge-text');
+      const select = document.getElementById('f-industry');
+      const formContent = document.getElementById('modal-form-content');
+      const successEl = document.getElementById('modal-success');
+
+      // Reset to form state
+      formContent.style.display = 'block';
+      successEl.style.display = 'none';
+
+      if (industry) {
+        badge.style.display = 'inline-flex';
+        badgeText.textContent = industry;
+        select.value = industry;
+      } else {
+        badge.style.display = 'none';
+        select.value = '';
+      }
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('f-name').focus(), 300);
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modal-overlay')) closeModal();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    function submitForm() {
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+
+      if (!name || (!phone && !email)) {
+        alert('Please enter your name and at least a phone number or email so we can reach you.');
+        return;
+      }
+
+      // Build mailto with form data pre-filled
+      const biz = document.getElementById('f-biz').value.trim();
+      const industry = document.getElementById('f-industry').value;
+      const notes = document.getElementById('f-notes').value.trim();
+
+      const subject = encodeURIComponent('Demo Request - ' + (biz || name));
+      const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Business: ' + (biz || 'N/A') + '\n' +
+        'Industry: ' + (industry || 'N/A') + '\n' +
+        'Phone: ' + (phone || 'N/A') + '\n' +
+        'Email: ' + (email || 'N/A') + '\n\n' +
+        'Notes:\n' + (notes || 'None provided')
+      );
+
+      window.location.href = 'mailto:dpreviti@sentinelalpha.co?subject=' + subject + '&body=' + body;
+
+      // Show success state
+      document.getElementById('modal-form-content').style.display = 'none';
+      document.getElementById('modal-success').style.display = 'block';
+    }
+
+    // ── SMS DEMO ──
     const messages = [
       { type: 'inbound',  label: 'Prospect', text: 'Hey, I need a quote on a privacy fence. About 150 feet, backyard, Brentwood area.' },
       { type: 'outbound', label: 'Sarah',    text: 'Hi! Thanks for reaching out. I can definitely help get you set up. Are you looking for wood privacy, vinyl, or another material?' },
