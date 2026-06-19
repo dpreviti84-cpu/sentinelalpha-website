@@ -139,7 +139,7 @@
     .founder-bio { font-size: 16px; color: var(--muted); line-height: 1.8; }
     .founder-bio strong { color: var(--text); font-weight: 500; }
 
-    /* CTA SECTION - simplified, no redundant button */
+    /* CTA SECTION */
     #cta { padding: 96px 0; text-align: center; }
     .cta-inner { max-width: 600px; margin: 0 auto; }
     .cta-inner h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; color: var(--text); margin-bottom: 16px; }
@@ -478,6 +478,12 @@
           <label for="f-notes">Anything else we should know? (optional)</label>
           <textarea id="f-notes" placeholder="How leads come in, biggest pain points, current volume..."></textarea>
         </div>
+        <div class="field" style="margin-top:4px;">
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:400;letter-spacing:0;">
+            <input type="checkbox" id="f-consent" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--accent);" />
+            <span>By submitting this form I agree to the <a href="#" onclick="openDoc('privacy');return false;" style="color:var(--accent);">Privacy Policy</a> and <a href="#" onclick="openDoc('terms');return false;" style="color:var(--accent);">Terms of Service</a>, and I consent to receive SMS messages from Sentinel Alpha LLC regarding my inquiry. Reply STOP to opt out at any time. Msg and data rates may apply.</span>
+          </label>
+        </div>
         <button class="modal-submit" onclick="submitForm()">Send My Demo Request</button>
       </div>
 
@@ -486,6 +492,14 @@
         <h3>Request received.</h3>
         <p>We'll reach out within one business day to schedule your demo. Expect a call or text from (808) 220-7333.</p>
       </div>
+    </div>
+  </div>
+
+  <!-- PRIVACY / TERMS POPUP -->
+  <div class="modal-overlay" id="doc-overlay" onclick="closeDoc(event)" style="z-index:300;">
+    <div class="modal" style="max-width:680px;" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeDocDirect()" aria-label="Close">&times;</button>
+      <iframe id="doc-frame" src="" style="width:100%;height:70vh;border:none;border-radius:8px;background:var(--bg);"></iframe>
     </div>
   </div>
 
@@ -508,7 +522,6 @@
       const formContent = document.getElementById('modal-form-content');
       const successEl = document.getElementById('modal-success');
 
-      // Reset to form state
       formContent.style.display = 'block';
       successEl.style.display = 'none';
 
@@ -539,17 +552,40 @@
       if (e.key === 'Escape') closeModal();
     });
 
+    // ── PRIVACY / TERMS POPUP ──
+    function openDoc(type) {
+      const overlay = document.getElementById('doc-overlay');
+      const frame = document.getElementById('doc-frame');
+      frame.src = type === 'privacy' ? 'privacy.html' : 'terms.html';
+      overlay.classList.add('open');
+    }
+
+    function closeDocDirect() {
+      const overlay = document.getElementById('doc-overlay');
+      overlay.classList.remove('open');
+      document.getElementById('doc-frame').src = '';
+    }
+
+    function closeDoc(e) {
+      if (e.target === document.getElementById('doc-overlay')) closeDocDirect();
+    }
+
+    // ── FORM SUBMISSION ──
     function submitForm() {
       const name = document.getElementById('f-name').value.trim();
       const phone = document.getElementById('f-phone').value.trim();
       const email = document.getElementById('f-email').value.trim();
+      const consent = document.getElementById('f-consent').checked;
 
       if (!name || (!phone && !email)) {
         alert('Please enter your name and at least a phone number or email so we can reach you.');
         return;
       }
+      if (!consent) {
+        alert('Please review and accept the Privacy Policy and Terms of Service to continue.');
+        return;
+      }
 
-      // Build mailto with form data pre-filled
       const biz = document.getElementById('f-biz').value.trim();
       const industry = document.getElementById('f-industry').value;
       const notes = document.getElementById('f-notes').value.trim();
@@ -560,13 +596,13 @@
         'Business: ' + (biz || 'N/A') + '\n' +
         'Industry: ' + (industry || 'N/A') + '\n' +
         'Phone: ' + (phone || 'N/A') + '\n' +
-        'Email: ' + (email || 'N/A') + '\n\n' +
+        'Email: ' + (email || 'N/A') + '\n' +
+        'SMS Consent: Yes\n\n' +
         'Notes:\n' + (notes || 'None provided')
       );
 
       window.location.href = 'mailto:dpreviti@sentinelalpha.co?subject=' + subject + '&body=' + body;
 
-      // Show success state
       document.getElementById('modal-form-content').style.display = 'none';
       document.getElementById('modal-success').style.display = 'block';
     }
