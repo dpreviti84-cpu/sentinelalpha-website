@@ -479,10 +479,12 @@
           <textarea id="f-notes" placeholder="How leads come in, biggest pain points, current volume..."></textarea>
         </div>
         <div class="field" style="margin-top:4px;">
-          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:400;letter-spacing:0;">
-            <input type="checkbox" id="f-consent" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--accent);" />
-            <span>By submitting this form I agree to the <a href="#" onclick="openDoc('privacy');return false;" style="color:var(--accent);">Privacy Policy</a> and <a href="#" onclick="openDoc('terms');return false;" style="color:var(--accent);">Terms of Service</a>, and I consent to receive SMS messages from Sentinel Alpha LLC regarding my inquiry. Reply STOP to opt out at any time. Msg and data rates may apply.</span>
-          </label>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <input type="checkbox" id="f-consent" style="width:18px;height:18px;flex-shrink:0;margin-top:3px;accent-color:var(--accent);cursor:pointer;" />
+            <label for="f-consent" style="font-size:13px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:400;letter-spacing:0;cursor:pointer;line-height:1.6;">
+              By submitting this form I agree to the <a href="#" onclick="openDoc('privacy');return false;" style="color:var(--accent);">Privacy Policy</a> and <a href="#" onclick="openDoc('terms');return false;" style="color:var(--accent);">Terms of Service</a>, and I consent to receive SMS messages from Sentinel Alpha LLC regarding my inquiry. Reply STOP to opt out at any time. Msg and data rates may apply.
+            </label>
+          </div>
         </div>
         <button class="modal-submit" onclick="submitForm()">Send My Demo Request</button>
       </div>
@@ -492,14 +494,6 @@
         <h3>Request received.</h3>
         <p>We'll reach out within one business day to schedule your demo. Expect a call or text from (808) 220-7333.</p>
       </div>
-    </div>
-  </div>
-
-  <!-- PRIVACY / TERMS POPUP -->
-  <div class="modal-overlay" id="doc-overlay" onclick="closeDoc(event)" style="z-index:300;">
-    <div class="modal" style="max-width:680px;" role="dialog" aria-modal="true">
-      <button class="modal-close" onclick="closeDocDirect()" aria-label="Close">&times;</button>
-      <iframe id="doc-frame" src="" style="width:100%;height:70vh;border:none;border-radius:8px;background:var(--bg);"></iframe>
     </div>
   </div>
 
@@ -682,5 +676,14 @@
 
     setTimeout(runDemo, 1200);
   </script>
+
+  <!-- PRIVACY / TERMS POPUP -->
+  <div class="modal-overlay" id="doc-overlay" onclick="closeDoc(event)" style="z-index:300;">
+    <div class="modal" style="max-width:680px;" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeDocDirect()" aria-label="Close">&times;</button>
+      <iframe id="doc-frame" src="" style="width:100%;height:70vh;border:none;border-radius:8px;background:var(--bg);"></iframe>
+    </div>
+  </div>
+
 </body>
 </html>
