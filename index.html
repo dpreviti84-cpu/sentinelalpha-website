@@ -139,7 +139,7 @@
     .founder-bio { font-size: 16px; color: var(--muted); line-height: 1.8; }
     .founder-bio strong { color: var(--text); font-weight: 500; }
 
-    /* CTA SECTION */
+    /* CTA SECTION - simplified, no redundant button */
     #cta { padding: 96px 0; text-align: center; }
     .cta-inner { max-width: 600px; margin: 0 auto; }
     .cta-inner h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; color: var(--text); margin-bottom: 16px; }
@@ -522,6 +522,7 @@
       const formContent = document.getElementById('modal-form-content');
       const successEl = document.getElementById('modal-success');
 
+      // Reset to form state
       formContent.style.display = 'block';
       successEl.style.display = 'none';
 
@@ -571,7 +572,7 @@
     }
 
     // ── FORM SUBMISSION ──
-    function submitForm() {
+    async function submitForm() {
       const name = document.getElementById('f-name').value.trim();
       const phone = document.getElementById('f-phone').value.trim();
       const email = document.getElementById('f-email').value.trim();
@@ -590,21 +591,40 @@
       const industry = document.getElementById('f-industry').value;
       const notes = document.getElementById('f-notes').value.trim();
 
-      const subject = encodeURIComponent('Demo Request - ' + (biz || name));
-      const body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Business: ' + (biz || 'N/A') + '\n' +
-        'Industry: ' + (industry || 'N/A') + '\n' +
-        'Phone: ' + (phone || 'N/A') + '\n' +
-        'Email: ' + (email || 'N/A') + '\n' +
-        'SMS Consent: Yes\n\n' +
-        'Notes:\n' + (notes || 'None provided')
-      );
+      const submitBtn = document.querySelector('.modal-submit');
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
 
-      window.location.href = 'mailto:dpreviti@sentinelalpha.co?subject=' + subject + '&body=' + body;
+      try {
+        const res = await fetch('https://sentinel-alpha-sarah-agent-production.up.railway.app/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            phone,
+            email,
+            business: biz,
+            industry,
+            notes,
+            sms_consent: consent
+          })
+        });
 
-      document.getElementById('modal-form-content').style.display = 'none';
-      document.getElementById('modal-success').style.display = 'block';
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || 'Submission failed.');
+        }
+
+        document.getElementById('modal-form-content').style.display = 'none';
+        document.getElementById('modal-success').style.display = 'block';
+
+      } catch (err) {
+        console.error('Form submission error:', err);
+        submitBtn.textContent = 'Send My Demo Request';
+        submitBtn.disabled = false;
+        alert('Something went wrong submitting your request. Please call or text us directly at (808) 220-7333.');
+      }
     }
 
     // ── SMS DEMO ──
