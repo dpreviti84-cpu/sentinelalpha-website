@@ -552,12 +552,14 @@
       const overlay = document.getElementById('doc-overlay');
       const frame = document.getElementById('doc-frame');
       frame.src = type === 'privacy' ? 'privacy.html' : 'terms.html';
+      overlay.style.pointerEvents = 'all';
       overlay.classList.add('open');
     }
 
     function closeDocDirect() {
       const overlay = document.getElementById('doc-overlay');
       overlay.classList.remove('open');
+      overlay.style.pointerEvents = 'none';
       document.getElementById('doc-frame').src = '';
     }
 
@@ -678,7 +680,7 @@
   </script>
 
   <!-- PRIVACY / TERMS POPUP -->
-  <div class="modal-overlay" id="doc-overlay" onclick="closeDoc(event)" style="z-index:300;">
+  <div class="modal-overlay" id="doc-overlay" onclick="closeDoc(event)" style="z-index:300;opacity:0;pointer-events:none;">
     <div class="modal" style="max-width:680px;" role="dialog" aria-modal="true">
       <button class="modal-close" onclick="closeDocDirect()" aria-label="Close">&times;</button>
       <iframe id="doc-frame" src="" style="width:100%;height:70vh;border:none;border-radius:8px;background:var(--bg);"></iframe>
