@@ -50,6 +50,13 @@
     .nav-veteran { font-size: 12px; font-weight: 600; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
     .nav-cta { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 8px 18px; border-radius: var(--radius); transition: background 0.2s, color 0.2s; cursor: pointer; background: none; }
     .nav-cta:hover { background: var(--accent); color: var(--bg); }
+    .nav-links { display: flex; align-items: center; gap: 22px; }
+    .nav-links a { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-status { display: flex; align-items: center; gap: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #3DCA6E; box-shadow: 0 0 0 3px rgba(61,202,110,0.25); flex-shrink: 0; }
+    @media (prefers-reduced-motion: no-preference) { .status-dot { animation: statusPulse 2.4s ease-in-out infinite; } }
+    @keyframes statusPulse { 0%, 100% { box-shadow: 0 0 0 3px rgba(61,202,110,0.25); } 50% { box-shadow: 0 0 0 6px rgba(61,202,110,0.12); } }
 
     /* HERO */
     #hero { padding: 160px 0 96px; border-top: none; }
@@ -204,6 +211,9 @@
     footer { border-top: 1px solid var(--border); padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .footer-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; color: var(--muted); }
     .footer-brand span { color: var(--accent); }
+    .footer-links { display: flex; align-items: center; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
     .footer-legal { font-size: 13px; color: var(--muted); }
 
     /* RESPONSIVE */
@@ -217,7 +227,7 @@
       .step-num { flex-shrink: 0; margin: 0; }
       .founder-inner { grid-template-columns: 1fr; }
       .founder-photo { width: 200px; height: 210px; }
-      .nav-veteran { display: none; }
+      .nav-veteran, .nav-links, .nav-status { display: none; }
       .modal { padding: 28px 20px; }
     }
     @media (max-width: 560px) {
@@ -238,6 +248,12 @@
   <nav>
     <a href="#" class="nav-logo">SENTINEL<span>ALPHA</span></a>
     <div class="nav-right">
+      <div class="nav-links">
+        <a href="#how" onclick="scrollToSection('how');return false;">How It Works</a>
+        <a href="#who" onclick="scrollToSection('who');return false;">Industries</a>
+        <a href="#founder" onclick="scrollToSection('founder');return false;">Founder</a>
+      </div>
+      <div class="nav-status"><span class="status-dot"></span>Accepting New Clients</div>
       <span class="nav-veteran">Veteran Owned and Operated</span>
       <button class="nav-cta" onclick="openModal()">Request a Demo</button>
     </div>
@@ -432,6 +448,10 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">SENTINEL<span>ALPHA</span> LLC - Murfreesboro, TN - Veteran Owned and Operated</div>
+    <div class="footer-links">
+      <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+      <a href="/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+    </div>
     <div class="footer-legal">&copy; 2026 Sentinel Alpha LLC. All rights reserved.</div>
   </footer>
 
