@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sentinel Alpha LLC - AI Agents Built for Your Business</title>
-  <meta name="description" content="Sentinel Alpha builds custom AI agents for service businesses. Not a template. Not a chatbot. A system that knows your operation." />
+  <title>Sentinel Alpha LLC - Front-Office Systems for Small Service Businesses</title>
+  <meta name="description" content="Sentinel Alpha builds and runs the systems that answer, book, sign, and bill for small service businesses: website, CRM, texting line, payments, and alerts, installed by an operator. Murfreesboro, TN." />
+  <meta property="og:title" content="Sentinel Alpha LLC - Front-Office Systems for Small Service Businesses" />
+  <meta property="og:description" content="We build the systems that answer, book, sign, and bill for small service businesses. Installed and run by an operator." />
+  <meta property="og:url" content="https://sentinelalpha.co/" />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -72,7 +76,7 @@
     .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
 
     /* SMS DEMO */
-    .demo-window { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.5); contain: layout size; }
+    .demo-window { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.5); contain: layout; }
     .demo-header { background: var(--bg-raised); padding: 14px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); }
     .demo-avatar { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
     .demo-avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -240,6 +244,25 @@
       .msg, .typing-indicator { transition: none; }
       .typing-indicator span { animation: none; }
     }
+
+    /* OFFERS */
+    .offer-tagline { font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 14px; }
+    .cap-card ul { list-style: none; margin: 0 0 18px; padding: 0; }
+    .cap-card li { font-size: 14px; color: var(--muted); padding-left: 18px; position: relative; margin-bottom: 7px; line-height: 1.5; }
+    .cap-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .offer-terms { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin: 0; }
+    .offers-note { margin-top: 36px; font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 840px; }
+    .offers-note strong { color: var(--text); font-weight: 500; }
+
+    /* PROOF */
+    .proof-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .proof-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-dim); }
+    .proof-link:hover { border-bottom-color: var(--accent); }
+    .proof-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .proof-list li { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .proof-list li strong { display: block; color: var(--text); font-weight: 600; font-family: 'Space Grotesk', sans-serif; font-size: 14px; margin-bottom: 3px; }
+    .footer-tagline { font-size: 13px; color: var(--muted); margin: 6px 0 14px; }
+    @media (max-width: 900px) { .proof-inner { grid-template-columns: 1fr; gap: 32px; } }
   </style>
 </head>
 <body>
@@ -249,13 +272,14 @@
     <a href="#" class="nav-logo">SENTINEL<span>ALPHA</span></a>
     <div class="nav-right">
       <div class="nav-links">
-        <a href="#how" onclick="scrollToSection('how');return false;">How It Works</a>
-        <a href="#who" onclick="scrollToSection('who');return false;">Industries</a>
+        <a href="#offers" onclick="scrollToSection('offers');return false;">Packages</a>
+        <a href="#how" onclick="scrollToSection('how');return false;">Process</a>
+        <a href="#proof" onclick="scrollToSection('proof');return false;">Proof</a>
         <a href="#founder" onclick="scrollToSection('founder');return false;">Founder</a>
       </div>
-      <div class="nav-status"><span class="status-dot"></span>Accepting New Clients</div>
+      <div class="nav-status"><span class="status-dot"></span>Taking Founding Clients</div>
       <span class="nav-veteran">Veteran Owned and Operated</span>
-      <button class="nav-cta" onclick="openModal()">Request a Demo</button>
+      <button class="nav-cta" onclick="openModal()">Book a Scoping Call</button>
     </div>
   </nav>
 
@@ -264,24 +288,24 @@
     <div class="container">
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="hero-eyebrow">AI Agents for Service Businesses</p>
-          <h1 class="hero-headline">Every business is unique.<br><em>Your AI agent should be too.</em></h1>
-          <p class="hero-sub">We build custom AI agents that qualify leads, handle inbound inquiries, and book appointments around the clock - configured specifically to how your business actually operates.</p>
+          <p class="hero-eyebrow">Front-Office Systems for Small Service Businesses</p>
+          <h1 class="hero-headline">We build the systems that<br><em>answer, book, sign, and bill.</em></h1>
+          <p class="hero-sub">For small service businesses: website, CRM, texting line, intake, payments, and alerts, installed and run by an operator who uses the same systems in his own businesses. Measured on booked appointments, not logins.</p>
           <div class="hero-actions">
-            <button class="btn-primary" onclick="openModal()">Request a Free Demo</button>
-            <button class="btn-ghost" onclick="scrollToSection('how')">See How It Works</button>
+            <button class="btn-primary" onclick="openModal()">Book a Scoping Call</button>
+            <button class="btn-ghost" onclick="scrollToSection('offers')">See What Gets Built</button>
           </div>
         </div>
-        <div class="demo-window" aria-label="Live demo of Sarah AI agent">
+        <div class="demo-window" aria-label="Example conversation on a client's intake line">
           <div class="demo-header">
             <div class="demo-avatar">
-              <img src="sarah.png" alt="Sarah - AI Agent" />
+              <img src="sarah.png" alt="Sarah, the intake line" />
             </div>
             <div class="demo-header-info">
               <strong>Sarah</strong>
-              <span>Active now</span>
+              <span>Answering now</span>
             </div>
-            <div class="demo-badge">AI Agent</div>
+            <div class="demo-badge">Intake Line</div>
           </div>
           <div class="demo-messages" id="demo-messages"></div>
           <div class="demo-footer">
@@ -300,42 +324,64 @@
     <div class="container">
       <div class="problem-inner">
         <p class="section-eyebrow">The Problem</p>
-        <h2 class="section-headline">Generic AI gives generic results.</h2>
+        <h2 class="section-headline">Small businesses get sold software. Nobody installs it.</h2>
         <p class="section-body">
-          Most AI services hand you a template and call it done. They don't know your service area, your materials, your process, or your customers. <strong>When a prospect reaches out at 11pm on a Sunday, they get a response that could have come from anyone.</strong> That's not white-glove. That's a missed opportunity.
+          A login, a template, a monthly charge, and a support queue. The owner is left to wire the website to the CRM, the CRM to the phone, the phone to the calendar, and the calendar to the invoice. Most never finish. <strong>The lead that texts at 7pm on a Friday goes unanswered, and the one that does get a reply never lands in a record anyone can find.</strong> That is not a software problem. It is an installation problem, and it is the one we fix.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SARAH CAPABILITIES -->
-  <section id="sarah">
+  <!-- OFFERS -->
+  <section id="offers">
     <div class="container">
-      <p class="section-eyebrow">The Agent</p>
-      <h2 class="section-headline">Meet Sarah.</h2>
+      <p class="section-eyebrow">What We Build</p>
+      <h2 class="section-headline">Three packages. One operator. Nothing handed over half-wired.</h2>
       <div class="capabilities-grid">
         <div class="cap-card">
-          <div class="cap-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          </div>
-          <h3>Responds in Under 60 Seconds</h3>
-          <p>Every inbound lead gets an immediate, intelligent reply - 24 hours a day, 7 days a week, including holidays. No missed opportunities, no voicemail black holes.</p>
+          <h3>Launch Kit</h3>
+          <p class="offer-tagline">From filed LLC to first paying client.</p>
+          <ul>
+            <li>Domain and a website that captures leads</li>
+            <li>CRM with pipeline, intake form, and contact records</li>
+            <li>Business texting line, carrier-registered</li>
+            <li>Payment products and pay links through Stripe</li>
+            <li>Alert workflows so nothing sits unanswered</li>
+            <li>Privacy, terms, and consent pages that pass carrier review</li>
+          </ul>
+          <p class="offer-terms">Fixed scope. One-time build fee.</p>
         </div>
         <div class="cap-card">
-          <div class="cap-icon">
-            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-          </div>
-          <h3>Qualifies Before You Touch It</h3>
-          <p>Sarah asks the right questions specific to your business - scope, timeline, service area, budget signals - so every hand-off you receive is a warm, qualified lead.</p>
+          <h3>Launch Kit + Sarah</h3>
+          <p class="offer-tagline">Everything above, plus the intake line that answers.</p>
+          <ul>
+            <li>Sarah on your texting line: answers, qualifies, books</li>
+            <li>Consent and opt-out handled in the system, not from memory</li>
+            <li>Every conversation logged with notes and tags</li>
+            <li>Written operating procedure for you and your staff</li>
+            <li>Live end-to-end test before go-live</li>
+            <li>Monthly operation, monitoring, and tuning</li>
+          </ul>
+          <p class="offer-terms">One-time build fee plus monthly retainer.</p>
         </div>
         <div class="cap-card">
-          <div class="cap-icon">
-            <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-          </div>
-          <h3>Logs Everything to Your CRM</h3>
-          <p>Every conversation, contact record, and qualification note is automatically captured. Your team picks up with full context - no re-asking, no lost notes.</p>
+          <h3>Audit</h3>
+          <p class="offer-tagline">Already running, and the stack is not.</p>
+          <ul>
+            <li>Ten-point review: site, CRM, phone, forms, payments, alerts</li>
+            <li>Every gap fixed, not just listed</li>
+            <li>Written findings you keep</li>
+            <li>Texting compliance checked against carrier rules</li>
+            <li>Option to move to a monthly retainer</li>
+          </ul>
+          <p class="offer-terms">Flat fee.</p>
         </div>
       </div>
+      <p class="offers-note">
+        <strong>Add-ons, priced separately:</strong> Google Business Profile setup and verification, branded email sending domain, service-area routing and address checks, additional forms and intake pages, brand kit (logo files, business card, print specs), past-customer reactivation campaign, additional texting campaigns, and recurring-billing plans.
+        <br><br>
+        <strong>Founding-client pricing</strong> is in effect for the first three builds. Ask on the call.
+      </p>
     </div>
   </section>
 
@@ -343,64 +389,90 @@
   <section id="how">
     <div class="container">
       <p class="section-eyebrow">The Process</p>
-      <h2 class="section-headline">Built for your business. Fast.</h2>
+      <h2 class="section-headline">Scoped in one call. Texting live in under two weeks.</h2>
       <div class="process-steps">
         <div class="step">
           <div class="step-num">1</div>
           <div>
-            <h3>We Learn Your Operation</h3>
-            <p>We ask the right questions about your services, service area, customer types, and sales process. No generic intake form.</p>
+            <h3>Scoping Call</h3>
+            <p>Twenty minutes. What you sell, where you work, and how a customer finds, books, and pays you today. You leave with a fixed scope and a start date.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div>
-            <h3>We Build and Configure Sarah</h3>
-            <p>Your agent is trained on your business - your materials, your differentiators, your process. Not a template with your name on it.</p>
+            <h3>Build and Register</h3>
+            <p>Site, CRM, texting line, payments, and alerts go up in order. Carrier registration for the texting line is filed on day one so it clears while the rest is built.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div>
-            <h3>You See It Work. Then Decide.</h3>
-            <p>We run a free 30-day pilot. You measure the results against your current process. If it delivers, we talk about what's next.</p>
+            <h3>Live Test, Then We Run It</h3>
+            <p>We text the line, book the appointment, sign the agreement, and pay the invoice the way a customer would, with you watching. Then it goes live, and we keep it running.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- INDUSTRIES -->
+  <!-- WHO IT'S FOR -->
   <section id="who">
     <div class="container">
-      <p class="section-eyebrow">Industries</p>
-      <h2 class="section-headline">Built for businesses that run on leads.</h2>
-      <p style="color:var(--muted);font-size:15px;margin-top:12px;">Click your industry to get started.</p>
+      <p class="section-eyebrow">Who It's For</p>
+      <h2 class="section-headline">Small service businesses, from first filing to fourth location.</h2>
+      <p style="color:var(--muted);font-size:15px;margin-top:12px;">Click the closest fit to start the conversation.</p>
       <div class="industries-grid">
-        <div class="industry-tile" onclick="openModal('Home Services and Trades')">
+        <div class="industry-tile" onclick="openModal('Trades and Home Services')">
           <span class="industry-icon">🔨</span>
-          <h4>Home Services and Trades</h4>
-          <p>Fencing, roofing, HVAC, plumbing, solar - any trade where speed-to-response wins the job.</p>
+          <h4>Trades and Home Services</h4>
+          <p>Fence, roofing, HVAC, plumbing, pest, lawn. Speed to response wins the job, and your past-customer list is the cheapest work you will ever book.</p>
           <div class="click-hint">Get Started &rarr;</div>
         </div>
-        <div class="industry-tile" onclick="openModal('Legal and Professional')">
+        <div class="industry-tile" onclick="openModal('Mobile and In-Home Services')">
+          <span class="industry-icon">🚐</span>
+          <h4>Mobile and In-Home Services</h4>
+          <p>Personal trainers, in-home care, mobile wellness, detailing. Service-area checks and intake done before the first visit.</p>
+          <div class="click-hint">Get Started &rarr;</div>
+        </div>
+        <div class="industry-tile" onclick="openModal('Professional Services')">
           <span class="industry-icon">⚖️</span>
-          <h4>Legal and Professional</h4>
-          <p>Law firms, CPAs, and financial advisors who need to qualify clients before spending billable hours.</p>
+          <h4>Professional Services</h4>
+          <p>Law, accounting, insurance, advisory. Qualify before a billable hour is spent, and get engagement letters signed without chasing.</p>
           <div class="click-hint">Get Started &rarr;</div>
         </div>
-        <div class="industry-tile" onclick="openModal('Real Estate')">
-          <span class="industry-icon">🏠</span>
-          <h4>Real Estate</h4>
-          <p>Agents, brokers, and investors who need leads triaged and appointments booked without manual follow-up.</p>
+        <div class="industry-tile" onclick="openModal('Multi-Location and Franchise')">
+          <span class="industry-icon">🏢</span>
+          <h4>Multi-Location and Franchise</h4>
+          <p>Several locations, one front office. The same systems at every location, reporting back to HQ. Retainer-based.</p>
           <div class="click-hint">Get Started &rarr;</div>
         </div>
-        <div class="industry-tile" onclick="openModal('Mortgage and Lending')">
-          <span class="industry-icon">🏦</span>
-          <h4>Mortgage and Lending</h4>
-          <p>Loan officers and brokers who need to capture and qualify borrower leads before a competitor calls them back first.</p>
-          <div class="click-hint">Get Started &rarr;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof">
+    <div class="container">
+      <div class="proof-inner">
+        <div>
+          <p class="section-eyebrow">Reference Build</p>
+          <h2 class="section-headline">Epic Veteran Mobility: filed LLC to booked clients.</h2>
+          <p class="section-body">
+            Epic Veteran Mobility is an in-home personal training business in Murfreesboro, Tennessee. Sentinel Alpha built its front office end to end and runs it today. Every piece listed here is live at <a href="https://www.epicveteranmobilitytn.com" target="_blank" rel="noopener noreferrer" class="proof-link">epicveteranmobilitytn.com</a>.
+          </p>
+          <p class="section-body" style="margin-top:18px;">
+            The same stack runs the inbound line for our own real estate brand, where Sarah qualifies sellers by text and routes them the same day. <strong>We do not sell a system we do not operate.</strong>
+          </p>
         </div>
+        <ul class="proof-list">
+          <li><strong>Domain and seven-page website</strong>Lead form with address lookup and consent capture, intake and policy pages built to pass carrier review.</li>
+          <li><strong>CRM and pipeline</strong>Contact records, custom fields, tags, and an intake form that arrives pre-filled from the text link.</li>
+          <li><strong>Carrier-registered texting line</strong>Cleared on the first filing. Sarah answers, confirms the service area, and books the consult.</li>
+          <li><strong>Payments</strong>Monthly plans and pay links through Stripe, with paid and failed-payment alerts.</li>
+          <li><strong>Alert workflows</strong>Every handoff tagged and routed to the owner by email and task. Nothing waits on someone remembering to check.</li>
+          <li><strong>Brand kit</strong>Logo rebuilt as vector, web derivatives, business card, work-shirt print package.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -410,7 +482,7 @@
     <div class="container">
       <div class="founder-inner">
         <div class="founder-photo">
-          <img src="dan.jpg" alt="Dan Previti - Founder, Sentinel Alpha LLC" />
+          <img src="dan.jpg" alt="Dan Previti - Founder and Operator, Sentinel Alpha LLC" />
         </div>
         <div class="founder-content">
           <div class="founder-badge">
@@ -418,9 +490,9 @@
             <span>Veteran Owned and Operated</span>
           </div>
           <h2 class="founder-name">Dan Previti</h2>
-          <p class="founder-title">Founder, Sentinel Alpha LLC - Murfreesboro, TN</p>
+          <p class="founder-title">Founder and Operator, Sentinel Alpha LLC - Murfreesboro, TN</p>
           <p class="founder-bio">
-            Dan Previti is a retired U.S. Navy veteran and the founder of Sentinel Alpha LLC. After two decades of systems-level thinking in high-stakes environments, he turned that same discipline toward building AI infrastructure for service businesses - systems that respond faster, qualify better, and never drop the ball. <strong>Sentinel Alpha's flagship agent, Sarah, is ready to deploy and operate for your business in any market.</strong>
+            Dan Previti is a retired U.S. Navy Chief who spent twenty years in Navy logistics, where a part that is not tracked is a part that does not exist. He brought that habit to the small business front office: every lead gets a record, every record gets an owner, every owner gets an alert. <strong>He builds every Sentinel Alpha system himself and runs the same stack in his own businesses.</strong> No sales team, no hand-off, one person who answers for the work.
           </p>
         </div>
       </div>
@@ -432,16 +504,16 @@
     <div class="container">
       <div class="cta-inner">
         <p class="section-eyebrow">Get Started</p>
-        <h2>See what Sarah can do for your business.</h2>
-        <p>We start with a conversation, not a contract. Tell us about your operation and we'll show you a demo built around it.</p>
-        <button class="btn-primary" onclick="openModal()" style="margin-bottom:28px;">Request Your Free Demo</button>
+        <h2>Start with a 20-minute scoping call.</h2>
+        <p>Tell us what you sell and how customers reach you today. You leave the call with a fixed scope and a start date. If the business is not quite ready, you leave with a free launch checklist and a follow-up date instead. <strong style="color:var(--text);font-weight:500;">Best fit: entity filed, business bank account open, and one paying customer or a signed first client.</strong></p>
+        <button class="btn-primary" onclick="openModal()" style="margin-bottom:28px;">Book a Scoping Call</button>
         <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Or reach out directly:</p>
         <div class="cta-contact-options">
           <a href="tel:6292888756" class="cta-contact-options a btn-call">📞 Call (629) 288-8756</a>
           <a href="sms:6292888756" class="btn-sms">💬 Text (629) 288-8756</a>
           <a href="mailto:dpreviti@sentinelalpha.co" class="btn-call">📧 Email dpreviti@sentinelalpha.co</a>
         </div>
-        <p class="cta-note">Text us and Sarah responds in seconds, day or night. Prefer to talk or email? We respond personally, typically within the hour during business hours and by the next business day outside them.</p>
+        <p class="cta-note">Text the line and Sarah answers in seconds, day or night, and gets you on the calendar. Call or email and you get Dan, usually within the hour during business hours and by the next business day outside them.</p>
       </div>
     </div>
   </section>
@@ -449,6 +521,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">SENTINEL<span>ALPHA</span> LLC - Murfreesboro, TN - Veteran Owned and Operated</div>
+    <div class="footer-tagline">Front-office systems for small service businesses, built and run by an operator.</div>
     <div class="footer-links">
       <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
       <a href="/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
@@ -456,7 +529,7 @@
     <div class="footer-legal">&copy; 2026 Sentinel Alpha LLC. All rights reserved.</div>
   </footer>
 
-  <!-- DEMO REQUEST MODAL -->
+  <!-- SCOPING CALL MODAL -->
   <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
@@ -465,8 +538,8 @@
         <div class="modal-industry-badge" id="modal-badge" style="display:none;">
           <span id="modal-badge-text"></span>
         </div>
-        <h2 id="modal-title">Request Your Free Demo</h2>
-        <p class="modal-sub">Tell us about your business and we'll build a demo configured specifically to your operation - no generic templates.</p>
+        <h2 id="modal-title">Book a Scoping Call</h2>
+        <p class="modal-sub">Tell us about the business and we come to the call with the right questions ready. Twenty minutes, no slide deck.</p>
 
         <div class="field">
           <label for="f-name">Your Name</label>
@@ -474,17 +547,28 @@
         </div>
         <div class="field">
           <label for="f-biz">Business Name</label>
-          <input type="text" id="f-biz" placeholder="Your company name" />
+          <input type="text" id="f-biz" placeholder="Your company name, or working name if not filed yet" />
         </div>
         <div class="field">
           <label for="f-industry">Industry</label>
           <select id="f-industry">
-            <option value="">Select your industry</option>
-            <option value="Home Services and Trades">Home Services and Trades</option>
-            <option value="Legal and Professional">Legal and Professional</option>
-            <option value="Real Estate">Real Estate</option>
-            <option value="Mortgage and Lending">Mortgage and Lending</option>
+            <option value="">Select the closest fit</option>
+            <option value="Trades and Home Services">Trades and Home Services</option>
+            <option value="Mobile and In-Home Services">Mobile and In-Home Services</option>
+            <option value="Professional Services">Professional Services</option>
+            <option value="Multi-Location and Franchise">Multi-Location and Franchise</option>
             <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-need">What do you need?</label>
+          <select id="f-need">
+            <option value="">Select one</option>
+            <option value="Launch Kit">Launch Kit: new business, nothing built yet</option>
+            <option value="Launch Kit + Sarah">Launch Kit + Sarah: build it and answer the line</option>
+            <option value="Audit">Audit: already running, stack is broken</option>
+            <option value="Reactivation">Reactivation: book work from my past-customer list</option>
+            <option value="Not sure">Not sure yet</option>
           </select>
         </div>
         <div class="field">
@@ -497,7 +581,7 @@
         </div>
         <div class="field">
           <label for="f-notes">Anything else we should know? (optional)</label>
-          <textarea id="f-notes" placeholder="How leads come in, biggest pain points, current volume..."></textarea>
+          <textarea id="f-notes" placeholder="Where you are today: just filed, first customers in, existing tools that don't talk to each other..."></textarea>
         </div>
         <div class="field" style="margin-top:4px;">
           <div style="display:flex;align-items:flex-start;gap:10px;">
@@ -507,13 +591,13 @@
             </label>
           </div>
         </div>
-        <button class="modal-submit" onclick="submitForm()">Send My Demo Request</button>
+        <button class="modal-submit" onclick="submitForm()">Request the Call</button>
       </div>
 
       <div class="modal-success" id="modal-success">
         <div class="success-icon">✅</div>
         <h3>Request received.</h3>
-        <p>We'll reach out within one business day to schedule your demo. Expect a call or text from (629) 288-8756.</p>
+        <p>Dan will reach out within one business day to set the call. Expect a call or text from (629) 288-8756.</p>
       </div>
     </div>
   </div>
@@ -595,6 +679,7 @@
 
       const biz = document.getElementById('f-biz').value.trim();
       const industry = document.getElementById('f-industry').value;
+      const need = document.getElementById('f-need').value;
       const notes = document.getElementById('f-notes').value.trim();
 
       const submitBtn = document.querySelector('.modal-submit');
@@ -612,7 +697,9 @@
             business: biz,
             industry,
             notes,
-            sms_consent: consent
+            sms_consent: consent,
+            intent: need,
+            source: 'sentinelalpha.co'
           })
         });
 
@@ -627,7 +714,7 @@
 
       } catch (err) {
         console.error('Form submission error:', err);
-        submitBtn.textContent = 'Send My Demo Request';
+        submitBtn.textContent = 'Request the Call';
         submitBtn.disabled = false;
         alert('Something went wrong submitting your request. Please call or text us directly at (629) 288-8756.');
       }
